@@ -1,2 +1,4 @@
 class BznPoetry::Days 
+
+    
 end 

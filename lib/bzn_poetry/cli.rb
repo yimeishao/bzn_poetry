@@ -14,16 +14,19 @@ class BznPoetry::CLI
     
     def run 
         puts "Welcome to Bozeman Craigslist Poetry"
+        puts "View poems from this month by selecting a day"
+        get_available_days
+        list_days
     end 
 
     def get_available_days
       # will be scraped 
-      @days = [ ]
+      @days = ["01", "04"]
     end 
     
     def list_days 
-      @days.each_with_index(d) do |index, day| 
-        puts "#{index + 1}. #{day}"
+      @days.each.with_index(1) do |day, index| 
+        puts "#{index}. #{day}"
       end 
     end 
 end
