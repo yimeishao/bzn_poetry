@@ -1,0 +1,2 @@
+class BznPoetry::Scraper 
+end 
