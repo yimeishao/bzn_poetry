@@ -6,18 +6,22 @@ class BznPoetry::CLI
     # #   run 
     # #   puts "View poems from this month by selecting a day"
     # #   get_available_days 
+    # #     # this should retrieve all of the possible dates, but ignore repeats 
+    # #     # effectively store all of the ones that share a date into an array/hash
     # #   list_days 
     # #   get_user_day
     # #   get_posts_for(day)
     # #   list_posts 
+    # #     # puts the contents of the date array 
+    # #   exit 
 
     
-    def call 
+    def welcome 
         puts "Welcome to Bozeman Craigslist Poetry"
-        view
+        main_menu 
     end 
 
-    def view 
+    def main_menu
         puts "To view poems, type 'poems' or type 'exit' to exit"
         input = gets.strip 
         case input.downcase 
@@ -31,24 +35,28 @@ class BznPoetry::CLI
 
     def poems_menu
         puts "Select an available date by selecting its index number"
-        get_available_date
+        puts "Scroll down to view available dates"
+        get_available
         list_dates
+        puts "Scroll up to view available dates"
         get_user_date 
     end 
 
-    def get_available_date
-      @dates = BznPoetry::Posts.all.date 
+    def get_available
+      @entries = BznPoetry::Posts.all
     end 
     
     def list_dates
-      @dates.each_with_index do |date, index| 
+      @entries.each_with_index do |date, index| 
         puts "#{index + 1}. #{date}"
       end 
+      get_user_date
     end 
 
     # def get_user_date 
-    #     chosen_date = gets.strip
+    #    chosen_date = gets.strip
     #    if chosen_date = 
+    #    show poem
     #     elsif chosen_date = "exit"
     #         exit 
     #     else 
@@ -62,11 +70,11 @@ class BznPoetry::CLI
     # end 
     # end
 
-    # def exit 
-    # end 
-
     # def invalid_input
     # puts "Command not recognized"
-    # view 
+    # main_menu
+    # end 
+
+       # def exit 
     # end 
 end
