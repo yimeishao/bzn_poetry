@@ -43,7 +43,7 @@ class BznPoetry::CLI
     end 
 
     def get_available
-      @entries = BznPoetry::Posts.all
+      @entries = BznPoetry::Posts::GROUP
     end 
     
     def list_dates
