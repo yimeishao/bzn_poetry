@@ -1,3 +1,5 @@
+require 'pry'
+
 class BznPoetry::CLI 
 
     #   This is the only place to use "puts" and the only place where users can enter info
@@ -42,28 +44,27 @@ class BznPoetry::CLI
     end 
 
     def get_available
-      @available = BznPoetry::Posts::GROUP
+      @available = BznPoetry::Posts.group
       @list = []
       @available.each do |k, v| 
         @list << k 
       end 
-      @list.each_with_index |k|
-      puts "#{index + 1}. #{k}"
-    end 
-    get_user_date
+      @list.each_with_index do |k, i|
+      puts "#{i + 1}. #{k}"
+      end 
     end 
     
 
-    # def get_user_date 
-    #    chosen_date = gets.strip
-    #    if chosen_date = 
-    #    show poem
-    #     elsif chosen_date = "exit"
-    #         exit 
-    #     else 
-    #         invalid_input
-    #     end 
-    # end 
+    def get_user_date 
+       user_date = gets.strip
+       if @list.index.to_s.include? user_date
+       show poem(user_date)
+        elsif user_date == "exit"
+            exit 
+        else 
+            invalid_input
+        end 
+    end 
 
     # def show_poem(chosen_date)
     # if the chosen_date matches the date attribute 

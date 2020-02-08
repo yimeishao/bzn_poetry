@@ -1,3 +1,4 @@
+require 'pry'
 class BznPoetry::Scraper 
     
     def self.scrape_craigslist
@@ -7,8 +8,8 @@ class BznPoetry::Scraper
         posts = doc.css("ul.rows p.result-info")
 
         posts.each do |post| 
-        date = doc.css("time.result-date").text.strip
-        title = doc.css("a.result-title.hdlnk").text.strip 
+        date = post.css("time.result-date").text.strip
+        title = post.css("a.result-title.hdlnk").text.strip 
 
         BznPoetry::Posts.new(date, title)
         end 

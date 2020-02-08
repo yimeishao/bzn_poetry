@@ -1,7 +1,9 @@
+require 'pry'
+
 class BznPoetry::Posts 
 #should have a date and title 
 
-attr_accessor :date, :title, :group
+attr_accessor :date, :title
 
 @@all = []
 GROUP = {}
@@ -33,4 +35,8 @@ def self.all
     @@all
 end 
 
+def self.group 
+    BznPoetry::Scraper.scrape_craigslist if GROUP.empty?
+    GROUP
+end 
 end 
