@@ -20,6 +20,10 @@ def add_post(date, title)
     GROUP[date] << title
 end 
 
+def date_contents(date)
+    DATES[date]
+end 
+
 def save 
     @@all << self
 end 
