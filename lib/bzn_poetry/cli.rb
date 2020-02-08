@@ -37,21 +37,22 @@ class BznPoetry::CLI
         puts "Select an available date by selecting its index number"
         puts "Scroll down to view available dates"
         get_available
-        list_dates
         puts "Scroll up to view available dates"
         get_user_date 
     end 
 
     def get_available
-      @entries = BznPoetry::Posts::GROUP
+      @available = BznPoetry::Posts::GROUP
+      @list = []
+      @available.each do |k, v| 
+        @list << k 
+      end 
+      @list.each_with_index |k|
+      puts "#{index + 1}. #{k}"
+    end 
+    get_user_date
     end 
     
-    def list_dates
-      @entries.each_with_index do |date, index| 
-        puts "#{index + 1}. #{date}"
-      end 
-      get_user_date
-    end 
 
     # def get_user_date 
     #    chosen_date = gets.strip
