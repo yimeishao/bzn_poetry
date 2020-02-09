@@ -6,25 +6,15 @@ class BznPoetry::Posts
 attr_accessor :date, :title
 
 @@all = []
-GROUP = {}
 
 def initialize(date, title)
     @date = date
     @title = title
-    add_post(date, title)
-    save 
+    # unique_dates(date, title)
+    # add_post(date, title)
+    save
 end 
 
-def add_post(date, title)
-    if GROUP.include?(date) == false 
-        GROUP[date] = []
-    end 
-    GROUP[date] << title
-end 
-
-def date_contents(date)
-    DATES[date]
-end 
 
 def save 
     @@all << self
@@ -35,8 +25,4 @@ def self.all
     @@all
 end 
 
-def self.group 
-    BznPoetry::Scraper.scrape_craigslist if GROUP.empty?
-    GROUP
-end 
 end 
