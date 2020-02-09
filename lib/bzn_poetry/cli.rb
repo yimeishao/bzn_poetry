@@ -8,7 +8,7 @@ class BznPoetry::CLI
     end 
 
     def main_menu
-        puts "To view poems, type 'poems' or type 'exit' to exit"
+        puts "To view latest poems, type 'poems' or type 'exit' to exit"
         input = gets.strip 
         case input.downcase 
         when "poems" 
@@ -26,16 +26,18 @@ class BznPoetry::CLI
     end 
 
     def get_available
-      @available = BznPoetry::Posts.all  
+      @available = BznPoetry::Posts.dates
       list_available
     end 
 
     def list_available
       @list = []
 
-      @available.each do |post| 
-        @list << post.date until @list.length == 10
-      end 
+      @available.each do |date| 
+        if @list.include?(date) == false && @list.length < 10 
+        @list << date 
+    end 
+    end 
       @list.each_with_index do |date, i|
       puts "#{i + 1}. #{date}"
       end 
