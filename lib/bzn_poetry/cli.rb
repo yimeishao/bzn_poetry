@@ -61,9 +61,9 @@ class BznPoetry::CLI
         date = @available[user_date]
         puts "Here is the poem for #{date}:"
 
-        @poems = BznPoetry::Posts.all 
+        @poems = BznPoetry::Posts.all
         poem = @poems[date]
-        puts "#{poem}"
+        puts poem 
     end 
 
     def invalid_input
