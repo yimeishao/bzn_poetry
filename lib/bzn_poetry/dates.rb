@@ -1,7 +1,8 @@
 require 'pry'
 
-class BznPoetry::Posts 
+class BznPoetry::Dates
 #should have a date and title 
+#groups together titles that share a date 
 
 attr_accessor :date, :title
 
@@ -20,6 +21,7 @@ DATES = []
     def add_post(date, title)
      if @@all.include?(date) == false 
         @@all[date] = []
+        #how can I convert the dates into symbols from strings?
         end 
     @@all[date] << title
     end 

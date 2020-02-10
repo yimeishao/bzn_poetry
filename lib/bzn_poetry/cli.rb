@@ -1,5 +1,3 @@
-require 'pry'
-
 class BznPoetry::CLI 
     
     def welcome 
@@ -8,6 +6,9 @@ class BznPoetry::CLI
         @input = ""
         until @input == "exit"
         main_menu 
+        get_available
+        list_available
+        get_user_date
         end 
     end 
 
@@ -26,13 +27,10 @@ class BznPoetry::CLI
 
     def poems_menu
         puts "\nChoose an index number to view the poem for that day:\n".underline
-        get_available
-        get_user_date
     end 
 
     def get_available
-      @available = BznPoetry::Posts.dates
-      list_available
+      @available = BznPoetry::Dates.dates
     end 
 
     def list_available
@@ -40,6 +38,7 @@ class BznPoetry::CLI
 
       @available.each do |date| 
         if @list.include?(date) == false && @list.length < 10 
+            # limiting number of dates to 10 so user doesn't have to scroll through 100+ dates 
         @list << date 
         end 
         end 
@@ -65,9 +64,11 @@ class BznPoetry::CLI
         date = @available[user_date]
         puts "\nHere's what our hearts wrote on #{date}:\n".bold 
 
-        @poems = BznPoetry::Posts.all
-        poem = @poems[date]
+        @poems = BznPoetry::Dates.all
+        poem = @poems[date].map {|x| x.downcase + " /"}
         puts poem
+
+        puts "\n- Thank you for reading -\n".italic
     end 
 
     def invalid_input
