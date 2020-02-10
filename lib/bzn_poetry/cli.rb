@@ -3,7 +3,8 @@ require 'pry'
 class BznPoetry::CLI 
     
     def welcome 
-        puts "Welcome to Bozeman Craigslist Poetry"
+        puts "\nWelcome to Bozeman Craigslist Poetry".bold.black.on_white
+        puts "for neighbors by neighbors\n".italic
         @input = ""
         until @input == "exit"
         main_menu 
@@ -11,9 +12,10 @@ class BznPoetry::CLI
     end 
 
     def main_menu
-        puts "To view latest poems, type 'poems' or type 'exit' to exit"
-        input = gets.strip 
-        case input.downcase 
+        puts "\nTo view latest poems, type 'poems'".bold
+        puts "Type 'exit' at any time to exit\n"
+        input = gets.strip.downcase 
+        case input
         when "poems" 
             poems_menu
         when "exit"
@@ -23,7 +25,7 @@ class BznPoetry::CLI
     end 
 
     def poems_menu
-        puts "Select an available date by selecting its index number"
+        puts "\nChoose an index number to view the poem for that day:\n".underline
         get_available
         get_user_date
     end 
@@ -48,10 +50,12 @@ class BznPoetry::CLI
     end 
     
     def get_user_date 
-       user_date = gets.strip.to_i
-       if user_date.to_i.between?(1, 10)
+       user_date = gets.strip
+    if user_date.to_i.between?(1, 10)
         user_date = user_date.to_i - 1 
         show_poem(user_date)
+    elsif user_date == 'exit'
+        exit 
        else 
         invalid_input 
        end 
@@ -59,15 +63,15 @@ class BznPoetry::CLI
 
     def show_poem(user_date)
         date = @available[user_date]
-        puts "Here is the poem for #{date}:"
+        puts "\nHere's what our hearts wrote on #{date}:\n".bold 
 
         @poems = BznPoetry::Posts.all
         poem = @poems[date]
-        puts poem 
+        puts poem
     end 
 
     def invalid_input
-    puts "Command not recognized"
+    puts "\nCommand not recognized\n".red
     main_menu
     end 
 

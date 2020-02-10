@@ -1,6 +1,7 @@
 require 'pry'
 require 'Nokogiri'
 require 'open-uri'
+require 'colorize'
 
 require_relative "./bzn_poetry/version"
 require_relative './bzn_poetry/cli'
