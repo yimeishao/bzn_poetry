@@ -21,7 +21,7 @@ DATES = []
      if @@all.include?(date) == false 
         @@all[date] = []
         end 
-    @@all[date] << title 
+    @@all[date] << title
     end 
 
     def self.dates
