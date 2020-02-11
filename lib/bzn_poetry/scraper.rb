@@ -12,7 +12,7 @@ class BznPoetry::Scraper
         date = post.css("time.result-date").text.strip
         title = post.css("a.result-title.hdrlnk").text.strip 
      
-        BznPoetry::Dates.new(date, title)
+        BznPoetry::Post.new(date, title)
         end 
     end 
 end 
