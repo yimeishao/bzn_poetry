@@ -1,49 +1,42 @@
 require 'pry'
 
 class BznPoetry::Post
-#rename to posts/poems 
-#method to format poems should live in here 
-#parameters for dates should be in here (better method to populate my DATES)
- # - when i store the dates, i want to store only unique dates and only the 10 most recent 
- # - the above currently happens in CLI class 
- # - i want to store posts as values associated with date symbol keys 
- # - this date-post hash collection should be iterated over to find_by_date for show_poem in the CLI class 
 
 attr_accessor :date, :title
 
-@@all = {}
-DATES = []
+@@all = []
 
     def initialize(date, title)
      @date = date
-        # unless DATES.include?(date)
-        # DATES << date 
-        # end
      @title = title
-     add_post(date, title)
-     add_to_dates(date)
+    save 
     end 
 
-    def add_post(date, title)
-     if @@all.include?(date) == false 
-        @@all[date] = []
+    def save
+        @@all << self 
+    end 
+
+    def self.find_poem_by_date(date)
+        array = []
+        @@all.each do |x| 
+            if x.date == date
+                array << x.title 
+            end 
         end 
-    @@all[date] << title
+        array.map! {|x| x.downcase + " /"}
+        array
     end 
 
-    def add_to_dates(date)
-    if DATES.include?(date) == false && DATES.length < 10 
-    DATES << date 
-    end
+    def self.possible_dates 
+        possible_dates = [] 
+        @@all.each do |x| 
+            possible_dates << x.date
+        end
+        possible_dates.uniq!
     end 
 
-    def self.dates
-        BznPoetry::Post.all if DATES.empty?
-        DATES
-    end 
 
     def self.all 
-     BznPoetry::Scraper.scrape_craigslist if @@all.empty?
         @@all
     end 
 

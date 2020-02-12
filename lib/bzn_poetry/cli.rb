@@ -13,7 +13,7 @@ class BznPoetry::CLI
 
     def main_menu
         puts "\nTo view latest poems, type 'poems'".bold
-        puts "Type 'exit' at any time to exit\n"
+        puts "Type 'exit' to exit\n"
         input = gets.strip.downcase 
         case input
         when "poems" 
@@ -32,13 +32,14 @@ class BznPoetry::CLI
     end 
 
     def get_available
-        @available = BznPoetry::Post.dates
+        BznPoetry::Post.all 
+        BznPoetry::Scraper.scrape_craigslist if BznPoetry::Post.all.empty?
     end 
 
     def list_available
-        @available.each_with_index do |date, i| 
-        puts "#{i + 1}. #{date}"
-        end
+       BznPoetry::Post.possible_dates.each_with_index do |date, i| 
+       puts "#{i + 1}. #{date}" unless i > 9 
+       end 
     end 
     
     def get_user_date 
@@ -54,16 +55,14 @@ class BznPoetry::CLI
     end 
 
     def show_poem(user_date)
-        date = @available[user_date]
+        date = BznPoetry::Post.possible_dates[user_date]
         puts "\nHere's what our hearts wrote on #{date}:\n".bold 
-
-        @poems = BznPoetry::Post.all
-        poem = @poems[date].map {|x| x.downcase + " /"}
-        puts poem
+        puts BznPoetry::Post.find_poem_by_date(date)
+        puts "\n- Thank you for reading -\n".italic
     end 
 
     def invalid_input
-    puts "\nCommand not recognized\n".red
+    puts "\nCommand not recognized\n".red.bold
     main_menu
     end 
 
