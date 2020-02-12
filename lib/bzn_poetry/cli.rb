@@ -5,8 +5,7 @@ class BznPoetry::CLI
     def welcome 
         puts "\nWelcome to Bozeman Craigslist Poetry".bold.black.on_white
         puts "for neighbors by neighbors\n".italic
-        @input = ""
-        until @input == "exit"
+        until false
         main_menu 
         end 
     end 
