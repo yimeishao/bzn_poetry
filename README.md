@@ -1,7 +1,7 @@
 # BznPoetry
 This is BznPoetry, a Ruby gem that creates poems from Bozeman Craigslist Missed Connections. 
 The user can choose a day to view the post titles from that day formatted into a poem. 
-Simply change the url within lib/scraper.rb to your local Craigslist MC ("https://[YOURCITY].craigslist.org/d/missed-connections/search/mis") to create poems from your city. 
+Simply change the url within lib/scraper.rb to your local Craigslist MC ("https://[YOURCITY].craigslist.org/d/missed-connections/search/mis") to create poems from your city. You might also want to change the welcome message to "\nWelcome to [YOURCITY] Craigslist Poetry". 
 
 ## Installation
 
