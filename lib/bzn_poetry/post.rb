@@ -35,7 +35,6 @@ attr_accessor :date, :title
         possible_dates.uniq!
     end 
 
-
     def self.all 
         @@all
     end 
