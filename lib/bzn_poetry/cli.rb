@@ -62,7 +62,6 @@ class BznPoetry::CLI
 
     def invalid_input
     puts "\nCommand not recognized\n".red.bold
-    main_menu
     end 
 
 end
