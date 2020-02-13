@@ -23,8 +23,7 @@ attr_accessor :date, :title
                 array << x.title 
             end 
         end 
-        array.map! {|x| x.downcase + " /"}
-        array
+        array.map {|x| x.downcase + " /"}
     end 
 
     def self.possible_dates 
