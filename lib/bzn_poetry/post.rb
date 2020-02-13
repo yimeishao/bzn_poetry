@@ -33,11 +33,12 @@ attr_accessor :date, :title
     end 
 
     def self.possible_dates 
-        possible_dates = [] 
-        self.all.each do |x| 
-            possible_dates << x.date
-        end
-        possible_dates.uniq
+        # possible_dates = [] 
+        # self.all.each do |x| 
+        #     possible_dates << x.date
+        # end
+        # possible_dates.uniq
+        self.all.map {|x| x.date}.uniq 
     end 
 
     def self.all 
