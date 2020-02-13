@@ -9,16 +9,17 @@ attr_accessor :date, :title
     def initialize(date, title)
      @date = date
      @title = title
-    save 
+     self.class.all << self 
+    # save 
     end 
 
-    def save
-        @@all << self 
-    end 
+    # def save
+    #     @@all << self 
+    # end 
 
     def self.find_poem_by_date(date)
         array = []
-        @@all.each do |x| 
+        self.all.each do |x| 
             if x.date == date
                 array << x.title 
             end 
@@ -28,10 +29,10 @@ attr_accessor :date, :title
 
     def self.possible_dates 
         possible_dates = [] 
-        @@all.each do |x| 
+        self.all.each do |x| 
             possible_dates << x.date
         end
-        possible_dates.uniq!
+        possible_dates.uniq
     end 
 
     def self.all 
