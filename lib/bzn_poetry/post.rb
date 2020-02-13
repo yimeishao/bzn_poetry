@@ -18,13 +18,18 @@ attr_accessor :date, :title
     # end 
 
     def self.find_poem_by_date(date)
-        array = []
-        self.all.each do |x| 
-            if x.date == date
-                array << x.title 
-            end 
-        end 
-        array.map {|x| x.downcase + " /"}
+        # array = []
+        # self.all.each do |x| 
+        #     if x.date == date
+        #         array << x.title 
+        #     end 
+        # end 
+        # array.map {|x| x.downcase + " /"}
+
+        # array = self.all.find_all {|x| x.date == date}
+        # array.map {|x| x.title.downcase + " /"}
+
+        self.all.find_all {|x| x.date == date}.map {|x| x.title.downcase + " /"}
     end 
 
     def self.possible_dates 
